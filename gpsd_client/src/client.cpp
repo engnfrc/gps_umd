@@ -312,7 +312,11 @@ namespace gpsd_client
 #endif
       }
 
+#if defined(SENSOR_MSGS_VERSION_NUM) && (SENSOR_MSGS_VERSION_NUM >= 50000)
+      fix->status.service = sensor_msgs::msg::NavSatStatus::SERVICE_UNKNOWN;
+#else
       fix->status.service = sensor_msgs::msg::NavSatStatus::SERVICE_GPS;
+#endif
 
       fix->latitude = p->fix.latitude;
       fix->longitude = p->fix.longitude;
